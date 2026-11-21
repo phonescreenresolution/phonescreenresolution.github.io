@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Screen Resolution - Check Screen Size &amp; DPI (Free)</title>
+<meta name="description" content="Check your phone screen resolution instantly — screen size, viewport, DPI, PPI and orientation. Free online tool, no app or download needed.">
+<meta name="keywords" content="phone screen resolution, check screen resolution, screen size, screen resolution test, mobile resolution, DPI, PPI, viewport size">
+<link rel="canonical" href="https://phonescreenresolution.github.io/">
+<meta property="og:title" content="Phone Screen Resolution - Check Screen Size & DPI (Free)">
+<meta property="og:description" content="Instantly see your phone's screen resolution, viewport size, pixel ratio and PPI — free, no app needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phonescreenresolution.github.io/">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark">📱</span>Phone<b>Resolution</b></a>
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Phone Screen Resolution</h1>
+    <p class="lede">Find out your phone's exact screen resolution in one second — physical pixels, viewport size, pixel density and orientation. Free, no app, no sign-up.</p>
+  </div>
+
+  <!-- Tool — directly under the H1 -->
+  <div class="tool" id="tool">
+    <p class="tool-label">Your screen resolution right now</p>
+    <div class="big-readout"><span id="bigRes">— × —</span><small>physical pixels (width × height)</small></div>
+    <div class="tiles">
+      <div class="tile"><span class="t-name">Screen resolution</span><b id="tScreen">—</b><span class="t-sub">physical pixels</span></div>
+      <div class="tile"><span class="t-name">Viewport size</span><b id="tViewport">—</b><span class="t-sub">CSS pixels</span></div>
+      <div class="tile"><span class="t-name">Pixel ratio (DPR)</span><b id="tDpr">—</b><span class="t-sub">device pixels per CSS pixel</span></div>
+      <div class="tile"><span class="t-name">Color depth</span><b id="tDepth">—</b><span class="t-sub">bits per pixel</span></div>
+      <div class="tile"><span class="t-name">Orientation</span><b id="tOrient">—</b><span class="t-sub">portrait / landscape</span></div>
+      <div class="tile"><span class="t-name">Aspect ratio</span><b id="tAspect">—</b><span class="t-sub">width : height</span></div>
+    </div>
+    <div class="tool-actions">
+      <button type="button" class="btn-main" id="refreshBtn">Check again</button>
+      <button type="button" class="btn-ghost" id="copyBtn">Copy details</button>
+      <span class="copied" id="copiedMsg" hidden>Copied ✓</span>
+    </div>
+    <div class="ppi-box">
+      <h3>PPI calculator</h3>
+      <p>Enter your phone's screen size in inches to find its pixels per inch (PPI).</p>
+      <div class="ppi-row">
+        <label>Screen diagonal <input type="number" id="diagInput" value="6.1" min="1" max="20" step="0.1"> inches</label>
+        <button type="button" class="btn-main" id="ppiBtn">Calculate PPI</button>
+        <span class="ppi-result" id="ppiResult">— PPI</span>
+      </div>
+    </div>
+    <p class="tool-note">Values are read live from your device and update when you rotate the screen or resize the window. Nothing is uploaded or stored.</p>
+  </div>
+
+  <section class="block">
+    <h2>What is phone screen resolution?</h2>
+    <p class="intro">Screen resolution is the number of tiny dots — pixels — your display uses to draw everything you see. It is written as width × height, for example 1080 × 2400. More pixels usually mean a sharper picture, but the number alone does not tell the whole story: pixel density and screen size matter just as much.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>📱 Physical pixels</h3>
+        <p>The real hardware resolution of your screen — the actual number of pixels built into the panel. This is the number phone makers advertise.</p>
+      </div>
+      <div class="card">
+        <h3>🖥️ Viewport (CSS pixels)</h3>
+        <p>The size websites see. Because of the device pixel ratio, the viewport is smaller than the physical resolution — that is why pages look the same size on very different phones.</p>
+      </div>
+      <div class="card">
+        <h3>🔍 Pixel ratio (DPR)</h3>
+        <p>How many physical pixels make up one CSS pixel. A DPR of 3 means every CSS pixel is drawn with 3 × 3 real pixels, which is why text looks so crisp on modern phones.</p>
+      </div>
+      <div class="card">
+        <h3>✨ PPI (pixels per inch)</h3>
+        <p>Pixel density — how tightly the pixels are packed. Above roughly 300 PPI, the human eye can no longer tell individual pixels apart at normal viewing distance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>How to check your screen resolution in 4 steps</h2>
+    <ol class="steps">
+      <li><h3>Open this page on your phone</h3><p>The tool reads your screen the moment the page loads — no app and no settings menu to dig through.</p></li>
+      <li><h3>Read the big number</h3><p>The large readout at the top shows your physical screen resolution, for example 1080 × 2400 pixels.</p></li>
+      <li><h3>Check the details</h3><p>The tiles below show your viewport size, pixel ratio, color depth, orientation and aspect ratio.</p></li>
+      <li><h3>Calculate your PPI</h3><p>Type your screen's diagonal size in inches into the PPI calculator to see your pixel density.</p></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Common phone resolutions</h2>
+    <p class="intro">Typical screen resolutions of popular phones. Your exact model may differ slightly by region or variant.</p>
+    <table class="compare">
+      <tr><th>Phone</th><th>Resolution</th><th>Size</th><th>Density</th></tr>
+      <tr><td>iPhone 15 Pro Max</td><td>1290 × 2796</td><td>6.7″</td><td>~460 PPI</td></tr>
+      <tr><td>iPhone 15</td><td>1179 × 2556</td><td>6.1″</td><td>~460 PPI</td></tr>
+      <tr><td>Samsung Galaxy S24 Ultra</td><td>1440 × 3120</td><td>6.8″</td><td>~505 PPI</td></tr>
+      <tr><td>Samsung Galaxy S24</td><td>1080 × 2340</td><td>6.2″</td><td>~416 PPI</td></tr>
+      <tr><td>Google Pixel 8 Pro</td><td>1344 × 2992</td><td>6.7″</td><td>~490 PPI</td></tr>
+      <tr><td>Google Pixel 8</td><td>1080 × 2400</td><td>6.2″</td><td>~428 PPI</td></tr>
+      <tr><td>OnePlus 12</td><td>1440 × 3168</td><td>6.8″</td><td>~510 PPI</td></tr>
+      <tr><td>Xiaomi 14</td><td>1200 × 2670</td><td>6.36″</td><td>~460 PPI</td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <h2>Resolution classes explained</h2>
+    <table class="compare">
+      <tr><th>Class</th><th>Typical resolution</th><th>Where you find it</th></tr>
+      <tr><td>HD</td><td>720 × 1280</td><td>Budget phones and older models</td></tr>
+      <tr><td>Full HD (FHD)</td><td>1080 × 1920 / 1080 × 2400</td><td>Most mid-range phones</td></tr>
+      <tr><td>Full HD+ (FHD+)</td><td>1080 × 2340 and up</td><td>Modern mid-range and flagships</td></tr>
+      <tr><td>Quad HD (QHD)</td><td>1440 × 2560 / 1440 × 3120</td><td>Premium flagships</td></tr>
+      <tr><td>4K</td><td>2160 × 3840</td><td>A few ultra-premium phones</td></tr>
+    </table>
+  </section>
+
+  <section class="block faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How do I find my phone's screen resolution?</summary>
+    <p>Open this page on your phone — the tool shows your resolution instantly at the top. No app, no settings, no download. You can also find it in your phone's Settings under About phone, but the exact menu name differs by brand.</p></details>
+    <details><summary>What is the difference between screen resolution and viewport size?</summary>
+    <p>Screen resolution is the physical number of pixels on your display. Viewport size is the size in CSS pixels that websites use to lay out pages. Because of the device pixel ratio, the viewport is smaller — for example, a phone with a 1179 × 2556 screen may report a viewport of 393 × 852 CSS pixels.</p></details>
+    <details><summary>What is a good screen resolution for a phone?</summary>
+    <p>For most people, Full HD (1080p) is plenty sharp on a phone-sized screen. Quad HD (1440p) looks slightly crisper on large phones, mainly for VR and very close viewing. Above 1080p the difference is hard to notice in everyday use.</p></details>
+    <details><summary>What is PPI and why does it matter?</summary>
+    <p>PPI means pixels per inch — how densely pixels are packed. Higher PPI means sharper text and images. Around 300 PPI is the point where individual pixels become invisible to the eye at normal distance; most modern phones are well above 400 PPI.</p></details>
+    <details><summary>Does a higher resolution drain the battery faster?</summary>
+    <p>Yes, a little. More pixels mean the processor and graphics chip work harder, especially in games and video. Some phones let you lower the resolution in Settings to save battery.</p></details>
+    <details><summary>Can I change my phone's screen resolution?</summary>
+    <p>On many Android phones you can: look in Settings under Display for "Screen resolution" and pick HD+, FHD+ or QHD+. On iPhones the resolution is fixed and cannot be changed.</p></details>
+    <details><summary>Why does my resolution look different in different apps?</summary>
+    <p>Some apps and games render at a lower resolution to run faster, and some phones switch resolution automatically to save battery. This tool reads the real hardware resolution, so it is the number to trust.</p></details>
+    <details><summary>What is device pixel ratio (DPR)?</summary>
+    <p>DPR tells you how many physical pixels are used for each CSS pixel. A DPR of 2 means 2 × 2 real pixels per CSS pixel; a DPR of 3 means 3 × 3. Higher DPR gives sharper text and images.</p></details>
+    <details><summary>Is this tool free?</summary>
+    <p>Yes, completely free. The resolution check, the details and the PPI calculator are all free, with no limits and no account.</p></details>
+    <details><summary>Do I need to install anything?</summary>
+    <p>No. This is a web tool — everything runs in your browser on any phone, tablet or computer. Nothing is installed, uploaded or stored.</p></details>
+  </section>
+
+  <section class="block">
+    <h2>Tips for a sharper screen</h2>
+    <div class="cards">
+      <div class="card"><h3>🔆 Match your content</h3><p>Watch videos in the highest quality your connection allows — a 1080p screen cannot show more detail than its pixels, but a low-quality video wastes the ones it has.</p></div>
+      <div class="card"><h3>🔋 Save battery on QHD phones</h3><p>If your phone offers a resolution setting, dropping from QHD to FHD+ saves battery with almost no visible difference.</p></div>
+      <div class="card"><h3>🧹 Keep the glass clean</h3><p>Fingerprints and smudges blur the picture more than a few missing pixels ever will. A quick wipe makes any screen look sharper.</p></div>
+      <div class="card"><h3>📏 PPI beats raw pixels</h3><p>When comparing phones, look at PPI and screen size together — a smaller screen with fewer pixels can look sharper than a big one with more.</p></div>
+      <div class="card"><h3>🎮 Games and resolution</h3><p>Many games let you pick a render resolution. Lowering it makes games run smoother; raising it makes them look crisper.</p></div>
+      <div class="card"><h3>🌙 Check at full brightness</h3><p>Resolution is only half the picture — brightness, color and contrast decide how good the screen actually looks. Test those too.</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Know your screen in one second</h2>
+    <p>Resolution, viewport, pixel ratio and PPI — free, right here.</p>
+    <a class="btn" href="#tool">Check My Resolution</a>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 PhoneResolution — Free phone screen resolution tool.</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </nav>
+  </div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
