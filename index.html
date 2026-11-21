@@ -36,15 +36,26 @@
 
   <!-- Tool — directly under the H1 -->
   <div class="tool" id="tool">
-    <p class="tool-label">Your screen resolution right now</p>
-    <div class="big-readout"><span id="bigRes">— × —</span><small>physical pixels (width × height)</small></div>
-    <div class="tiles">
-      <div class="tile"><span class="t-name">Screen resolution</span><b id="tScreen">—</b><span class="t-sub">physical pixels</span></div>
-      <div class="tile"><span class="t-name">Viewport size</span><b id="tViewport">—</b><span class="t-sub">CSS pixels</span></div>
-      <div class="tile"><span class="t-name">Pixel ratio (DPR)</span><b id="tDpr">—</b><span class="t-sub">device pixels per CSS pixel</span></div>
-      <div class="tile"><span class="t-name">Color depth</span><b id="tDepth">—</b><span class="t-sub">bits per pixel</span></div>
-      <div class="tile"><span class="t-name">Orientation</span><b id="tOrient">—</b><span class="t-sub">portrait / landscape</span></div>
-      <div class="tile"><span class="t-name">Aspect ratio</span><b id="tAspect">—</b><span class="t-sub">width : height</span></div>
+    <div class="res-head">
+      <span class="res-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+      <h2>What Is My Screen Resolution?</h2>
+      <span class="orient-pill" id="orientPill">—</span>
+    </div>
+
+    <div class="diagram" id="diagram" role="img" aria-label="Diagram of your screen size"></div>
+
+    <div class="phys-bar">
+      <div class="phys-main"><span id="physRes">— × —</span><small>px</small></div>
+      <span class="phys-label">Physical resolution</span>
+      <span class="badge badge-class" id="classBadge">—</span>
+      <span class="badge badge-aspect" id="aspectBadge">—</span>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><span class="s-name">Total pixels</span><b id="sTotal">—</b></div>
+      <div class="stat"><span class="s-name">Logical resolution</span><b id="sLogical">—</b></div>
+      <div class="stat"><span class="s-name">Refresh rate</span><b id="sRefresh">—</b></div>
+      <div class="stat"><span class="s-name">Color depth</span><b id="sDepth">—</b></div>
     </div>
     <div class="tool-actions">
       <button type="button" class="btn-main" id="refreshBtn">Check again</button>
@@ -90,8 +101,8 @@
     <h2>How to check your screen resolution in 4 steps</h2>
     <ol class="steps">
       <li><h3>Open this page on your phone</h3><p>The tool reads your screen the moment the page loads — no app and no settings menu to dig through.</p></li>
-      <li><h3>Read the big number</h3><p>The large readout at the top shows your physical screen resolution, for example 1080 × 2400 pixels.</p></li>
-      <li><h3>Check the details</h3><p>The tiles below show your viewport size, pixel ratio, color depth, orientation and aspect ratio.</p></li>
+      <li><h3>Read the black bar</h3><p>The black bar shows your physical screen resolution — for example 1080 × 2400 pixels — plus its quality class (HD, FHD, QHD or 4K) and aspect ratio.</p></li>
+      <li><h3>Check the diagram and details</h3><p>The diagram draws your screen to scale — the outline is your physical screen, the inner box is your browser window, and the striped bar is your taskbar. The row below shows total pixels, logical resolution, refresh rate and color depth.</p></li>
       <li><h3>Calculate your PPI</h3><p>Type your screen's diagonal size in inches into the PPI calculator to see your pixel density.</p></li>
     </ol>
   </section>
