@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battery Health Check - Test Phone Battery Health (Free)</title>
+<meta name="description" content="Check your phone battery health instantly — live battery level, charging status and time to full or empty, plus a real-health guide. Free, no app needed.">
+<meta name="google-site-verification" content="_-BRUVU3ety-sxMiKPLYXIAc3S__Jb0sioMftiq5Fuo" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YL931J847S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YL931J847S');
+</script>
+<meta name="keywords" content="battery health check, check battery health, phone battery test, battery level, charging time, battery wear, battery capacity">
+<link rel="canonical" href="https://phonescreenresolution.github.io/battery-health-check.html">
+<meta property="og:title" content="Battery Health Check - Test Phone Battery Health (Free)">
+<meta property="og:description" content="Instantly see your phone's battery level, charging status and time to full or empty — free, no app needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phonescreenresolution.github.io/battery-health-check.html">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark">📱</span>Phone<b>Resolution</b></a>
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main">
+      <a href="index.html">Home</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-drop-btn active" aria-expanded="false" aria-haspopup="true">Tools <span class="caret" aria-hidden="true"></span></button>
+        <div class="nav-drop-menu">
+          <a href="battery-health-check.html" class="active">Battery Health Check</a>
+          <a href="touchscreen-test.html">Touchscreen Test</a>
+        </div>
+      </div>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Battery Health Check</h1>
+    <p class="lede">Find out how your phone battery is doing in one second — live battery level, charging status and time to full or empty. Free, no app, no sign-up.</p>
+  </div>
+
+  <!-- Tool — directly under the H1 -->
+  <div class="tool" id="tool">
+    <h2>Your Battery Right Now</h2>
+    <p class="tool-sub">Live reading from your device — updates automatically when you plug in or unplug.</p>
+
+    <div id="liveTool">
+      <div class="gauge">
+        <div class="gauge-level" id="gaugeLevel">—<small>%</small></div>
+        <div><span class="status-pill discharging" id="statusPill">Reading…</span></div>
+        <div class="battery-shape" role="img" aria-label="Battery level gauge"><div class="battery-fill" id="batteryFill"></div></div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><span class="t-name">Battery level</span><b id="tLevel">—</b><span class="t-sub">charge remaining right now</span></div>
+        <div class="tile"><span class="t-name">Charging status</span><b id="tStatus">—</b><span class="t-sub">charging, full or discharging</span></div>
+        <div class="tile"><span class="t-name" id="tTimeName">Time to empty</span><b id="tTime">—</b><span class="t-sub" id="tTimeSub">until the battery runs out</span></div>
+      </div>
+      <div class="tool-actions">
+        <button type="button" class="btn-main" id="refreshBtn">Check again</button>
+        <button type="button" class="btn-ghost" id="copyBtn">Copy details</button>
+        <span class="copied" id="copiedMsg" hidden>Copied ✓</span>
+      </div>
+    </div>
+
+    <div class="unsupported" id="unsupportedBox" hidden>
+      <h3>⚠️ Your browser can't share battery data</h3>
+      <p>Your browser does not support the Battery Status API, so this page cannot read a live battery level. That is common on iPhones and some desktop browsers. Use the guide below instead — it shows exactly where the real battery health number lives on your phone.</p>
+    </div>
+
+    <p class="tool-note" id="toolNote"><strong>Honest note:</strong> browsers cannot read your battery's design capacity or charge cycles, so no website can give you a true "health %" number. The readings above are live and real — for the true health percentage, use the guide below.</p>
+
+    <div class="guide-box">
+      <h3>How to check real battery health</h3>
+      <p>Your phone keeps the real health number in its settings. Here is where to find it:</p>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h4>📱 On Android</h4>
+          <ol>
+            <li>Open <strong>Settings</strong>.</li>
+            <li>Tap <strong>Battery</strong>.</li>
+            <li>Tap <strong>Battery health</strong> (on some phones: Battery usage → three dots → Battery health).</li>
+            <li>Read the health percentage or capacity estimate.</li>
+          </ol>
+        </div>
+        <div class="guide-card">
+          <h4>🍎 On iPhone</h4>
+          <ol>
+            <li>Open <strong>Settings</strong>.</li>
+            <li>Tap <strong>Battery</strong>.</li>
+            <li>Tap <strong>Battery Health &amp; Charging</strong>.</li>
+            <li>Read <strong>Maximum Capacity</strong> — that is your battery health %.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="selfcheck">
+      <h3>Quick self-check: is your battery worn out?</h3>
+      <p>Tick anything that sounds familiar. Browsers cannot measure wear directly, but these signs are the most reliable clues.</p>
+      <label><input type="checkbox"> My phone drains much faster than when it was new.</label>
+      <label><input type="checkbox"> My phone shuts off suddenly, even at 20–30% battery.</label>
+      <label><input type="checkbox"> My phone gets very hot while charging or during normal use.</label>
+      <label><input type="checkbox"> The battery percentage jumps up or down by large amounts.</label>
+      <label><input type="checkbox"> My phone takes much longer to charge than it used to.</label>
+      <p class="selfcheck-result" id="selfCheckResult">No warning signs ticked yet — tick any that sound familiar.</p>
+    </div>
+
+    <div class="warning-box">
+      <h3>⚠️ Swollen battery? Stop and get help</h3>
+      <p>If your phone's back cover is bulging, the screen is lifting away from the frame, or the phone feels puffy, your battery may be swollen. Do <strong>not</strong> charge it, press on it or try to open the phone yourself. Take it to a repair shop as soon as possible — a swollen battery can overheat or catch fire.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2>What is battery health?</h2>
+    <p class="intro">Battery health is how much charge your battery can still hold compared to when it was new. A fresh battery holds 100% of its design capacity; as it ages, that number slowly drops, and the phone dies sooner on every charge.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>🔋 Battery capacity</h3>
+        <p>Measured in milliamp-hours (mAh). A phone rated at 5,000 mAh holds that much when new — after two years of use it may only hold 4,000 mAh or less.</p>
+      </div>
+      <div class="card">
+        <h3>🔁 Charge cycles</h3>
+        <p>One cycle means using 100% of the battery's charge, in one go or spread over days. Most phone batteries are built for around 500 full cycles before wear becomes noticeable.</p>
+      </div>
+      <div class="card">
+        <h3>📉 Battery wear</h3>
+        <p>Every charge slowly wears the battery's chemistry down. Heat, fast charging and deep discharges speed that wear up — which is why old phones die so fast.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ Why it matters</h3>
+        <p>A worn battery means shorter days, sudden shutdowns and sometimes slower performance, because the phone throttles itself to protect a weak battery.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>How to check your battery health in 4 steps</h2>
+    <ol class="steps">
+      <li><h3>Open this page on your phone</h3><p>The tool reads your live battery level, charging status and time to full or empty the moment the page loads — no app and no settings menu to dig through.</p></li>
+      <li><h3>Read the live numbers</h3><p>The gauge shows your current level, the pill shows whether you are charging or discharging, and the tiles show the time left until full or empty.</p></li>
+      <li><h3>Check the real health in your settings</h3><p>On Android: Settings → Battery → Battery health. On iPhone: Settings → Battery → Battery Health &amp; Charging → Maximum Capacity. That percentage is your true battery health.</p></li>
+      <li><h3>Run the self-check list</h3><p>Tick any warning signs above. If you tick three or more, your battery is very likely worn out and a replacement is worth considering.</p></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Signs your battery is getting weak</h2>
+    <p class="intro">If one or two of these sound familiar, your battery is ageing. Three or more means it is probably time for a replacement.</p>
+    <table class="compare">
+      <tr><th>Sign</th><th>What it means</th><th>What to do</th></tr>
+      <tr><td>Drains much faster than when new</td><td>Capacity has worn down over time</td><td>Check health % in settings; consider a replacement</td></tr>
+      <tr><td>Phone shuts off at 20–30%</td><td>The battery can no longer hold voltage under load</td><td>Back up your data; replace the battery</td></tr>
+      <tr><td>Back cover bulging or screen lifting</td><td>Gas build-up inside a damaged cell</td><td>Stop charging; get it replaced safely at once</td></tr>
+      <tr><td>Phone gets very hot while charging</td><td>Ageing cells or a faulty charger</td><td>Use the original charger; stop if it keeps happening</td></tr>
+      <tr><td>Takes much longer to charge</td><td>Worn cells accept charge more slowly</td><td>Try another cable and charger first</td></tr>
+      <tr><td>Battery % jumps up or down</td><td>The battery meter is miscalibrated or the cell is failing</td><td>Full drain + full charge once, or replace the battery</td></tr>
+    </table>
+  </section>
+
+  <section class="block faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How do I check my phone's battery health?</summary>
+    <p>Open this page for a live reading of your battery level, charging status and time left. For the true health percentage, check your settings: on Android go to Settings → Battery → Battery health; on iPhone go to Settings → Battery → Battery Health &amp; Charging and read Maximum Capacity.</p></details>
+    <details><summary>What is a good battery health percentage?</summary>
+    <p>Above 90% is excellent, 80–90% is good and normal after a year or two, and below 80% means the battery is worn — Apple itself considers below 80% the point to think about a replacement. Below 70% usually means very short battery life and sudden shutdowns.</p></details>
+    <details><summary>Can a website really test my battery health?</summary>
+    <p>Only partly, and honestly: a website can read your live battery level, whether you are charging, and the time to full or empty. It cannot read design capacity or charge cycles, so no website can give a true health percentage. That number only lives in your phone's own settings.</p></details>
+    <details><summary>Why does my battery drain so fast?</summary>
+    <p>Usually it is a mix of an ageing battery, a bright screen, poor signal, and apps running in the background. Check which apps use the most battery in Settings → Battery, and turn on battery saver if you need the day to last longer.</p></details>
+    <details><summary>How many charge cycles does a phone battery last?</summary>
+    <p>Most phone batteries are rated for about 500 full charge cycles before their capacity drops to roughly 80%. A cycle is 100% of charge used — so charging from 50% to 100% twice counts as one cycle, not two.</p></details>
+    <details><summary>Is it bad to charge my phone overnight?</summary>
+    <p>Modern phones stop charging at 100% and trickle instead, so overnight charging is not as harmful as it once was. Still, keeping a battery at 100% for hours every night adds a little wear. If your phone has an "optimised charging" setting, turn it on — it waits to finish charging until just before you wake up.</p></details>
+    <details><summary>Should I let my battery drain to 0%?</summary>
+    <p>No — deep discharges wear lithium batteries out faster. Try to keep your battery between about 20% and 80% most of the time. A full drain once in a while is fine, but do not make it a habit.</p></details>
+    <details><summary>Does fast charging damage the battery?</summary>
+    <p>A little, over time. Fast charging creates more heat, and heat is the battery's biggest enemy. It is fine to use when you need a quick top-up, but for everyday overnight charging a slower charger is gentler on the battery.</p></details>
+    <details><summary>When should I replace my phone battery?</summary>
+    <p>When the health percentage drops below 80%, when the phone shuts off early, or when you tick three or more signs in the self-check above. A battery replacement is usually much cheaper than a new phone and can make an old phone feel new again.</p></details>
+    <details><summary>Is this battery health check free?</summary>
+    <p>Yes, completely free. The live battery reading, the real-health guide and the self-check list are all free, with no limits and no account.</p></details>
+  </section>
+
+  <section class="block">
+    <h2>Tips to make your battery last longer</h2>
+    <div class="cards">
+      <div class="card"><h3>🔋 Stay between 20% and 80%</h3><p>Lithium batteries wear slowest in the middle of their range. Avoid letting the phone sit at 0% or 100% for long stretches.</p></div>
+      <div class="card"><h3>🌡️ Keep it cool</h3><p>Heat ages batteries faster than anything else. Do not leave your phone in a hot car or in direct sun while charging.</p></div>
+      <div class="card"><h3>🔌 Use the right charger</h3><p>Cheap, uncertified chargers can overheat the battery. Use the charger that came with your phone, or a certified one from a known brand.</p></div>
+      <div class="card"><h3>🔆 Turn the brightness down</h3><p>The screen is the biggest battery drain on most phones. Lower brightness, or use dark mode on OLED screens, and the battery lasts noticeably longer.</p></div>
+      <div class="card"><h3>📴 Tame background apps</h3><p>Check Settings → Battery to see which apps use the most power, and restrict the ones you rarely use. Battery saver mode helps on long days.</p></div>
+      <div class="card"><h3>🔄 Update your software</h3><p>System updates often include battery optimisations and fix apps that drain power in the background. Keep your phone up to date.</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Know your battery in one second</h2>
+    <p>Battery level, charging status and time to full — free, right here.</p>
+    <a class="btn" href="#tool">Check My Battery</a>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 PhoneResolution — Free phone screen resolution tool.</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="battery-health-check.html">Battery Health Check</a>
+      <a href="touchscreen-test.html">Touchscreen Test</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </nav>
+  </div>
+</footer>
+<script>
+/* Tools dropdown: click to toggle, closes when clicking elsewhere. */
+(function () {
+  var drop = document.querySelector('.nav-drop');
+  if (!drop) return;
+  var btn = drop.querySelector('.nav-drop-btn');
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = drop.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', function (e) {
+    if (!drop.contains(e.target)) {
+      drop.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  drop.querySelectorAll('.nav-drop-menu a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      drop.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      var nav = document.querySelector('nav.main');
+      var menuBtn = document.getElementById('menuBtn');
+      if (nav) nav.classList.remove('open');
+      if (menuBtn) { menuBtn.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+})();
+</script>
+<script src="battery-tool.js"></script>
+</body>
+</html>

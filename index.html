@@ -30,6 +30,13 @@
     <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="main">
       <a href="index.html" class="active">Home</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Tools <span class="caret" aria-hidden="true"></span></button>
+        <div class="nav-drop-menu">
+          <a href="battery-health-check.html">Battery Health Check</a>
+          <a href="touchscreen-test.html">Touchscreen Test</a>
+        </div>
+      </div>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -102,6 +109,21 @@
     </div>
     <p class="tool-note">Values are read live from your device and update when you rotate the screen or resize the window. Nothing is uploaded or stored.</p>
   </div>
+
+  <section class="block">
+    <h2>More free tools</h2>
+    <p class="intro">Two more quick checks for your phone — same free tool, no app, no sign-up.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>🔋 <a href="battery-health-check.html">Battery Health Check</a></h3>
+        <p>See your live battery level, charging status and time to full or empty — plus how to find your real battery health in settings.</p>
+      </div>
+      <div class="card">
+        <h3>👆 <a href="touchscreen-test.html">Touchscreen Test</a></h3>
+        <p>Tap every area, test multi-touch and draw across the screen to find dead spots in under a minute.</p>
+      </div>
+    </div>
+  </section>
 
   <section class="block">
     <h2>What is phone screen resolution?</h2>
@@ -212,12 +234,43 @@
     <span>© 2026 PhoneResolution — Free phone screen resolution tool.</span>
     <nav>
       <a href="index.html">Home</a>
+      <a href="battery-health-check.html">Battery Health Check</a>
+      <a href="touchscreen-test.html">Touchscreen Test</a>
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
       <a href="privacy-policy.html">Privacy Policy</a>
     </nav>
   </div>
 </footer>
+<script>
+/* Tools dropdown: click to toggle, closes when clicking elsewhere. */
+(function () {
+  var drop = document.querySelector('.nav-drop');
+  if (!drop) return;
+  var btn = drop.querySelector('.nav-drop-btn');
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = drop.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', function (e) {
+    if (!drop.contains(e.target)) {
+      drop.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  drop.querySelectorAll('.nav-drop-menu a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      drop.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      var nav = document.querySelector('nav.main');
+      var menuBtn = document.getElementById('menuBtn');
+      if (nav) nav.classList.remove('open');
+      if (menuBtn) { menuBtn.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+})();
+</script>
 <script src="app.js"></script>
 </body>
 </html>
