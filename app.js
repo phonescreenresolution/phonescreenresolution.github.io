@@ -1,4 +1,4 @@
-/* Phone Screen Resolution tool — live detection, screen diagram, PPI calculator, copy details. */
+/* Phone Screen Resolution tool — live detection, device visual, PPI calculator, copy details. */
 (function () {
   /* Mobile menu (hamburger) — runs on every page, even without the tool. */
   var menuBtn = document.getElementById('menuBtn');
@@ -19,8 +19,8 @@
   }
 
   var $ = function (id) { return document.getElementById(id); };
-  var diagram = $('diagram');
-  if (!diagram) return; // not the tool page
+  var tool = $('tool');
+  if (!tool) return; // not the tool page
 
   function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
   function fmt(n) { return n.toLocaleString('en-US'); }
@@ -51,54 +51,38 @@
     };
   }
 
-  /* Screen diagram: outline in physical pixels, window + taskbar in logical pixels. */
-  function buildDiagram(v) {
-    var sw = v.sw, sh = v.sh, dpr = v.dpr;
-    var winW = Math.min(sw, Math.round(v.vw * dpr));
-    var winH = Math.min(sh, Math.round(v.vh * dpr));
-    var taskPhys = Math.round(v.taskCss * dpr);
-    var padL = 110, padT = 96, padR = 36;
-    var padB = taskPhys > 0 ? 108 : 62;
-    var W = padL + sw + padR, H = padT + sh + padB;
-    var fs = Math.max(46, Math.round(sw * 0.024));
-    var fsSmall = Math.max(38, Math.round(sw * 0.018));
-    var s = '';
-    s += '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Screen diagram: ' + fmt(sw) + ' by ' + fmt(sh) + ' physical pixels">';
-    s += '<defs><pattern id="hatch" width="16" height="16" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#f3f0ff"/><line x1="0" y1="0" x2="0" y2="16" stroke="#c9b8f5" stroke-width="5"/></pattern></defs>';
-    /* Top dimension line: physical width. */
-    var ty = padT - 36;
-    s += '<line x1="' + padL + '" y1="' + ty + '" x2="' + (padL + sw) + '" y2="' + ty + '" stroke="#8a7fb8" stroke-width="2"/>';
-    s += '<line x1="' + padL + '" y1="' + (ty - 9) + '" x2="' + padL + '" y2="' + (ty + 9) + '" stroke="#8a7fb8" stroke-width="2"/>';
-    s += '<line x1="' + (padL + sw) + '" y1="' + (ty - 9) + '" x2="' + (padL + sw) + '" y2="' + (ty + 9) + '" stroke="#8a7fb8" stroke-width="2"/>';
-    s += '<text x="' + (padL + sw / 2) + '" y="' + (ty - 16) + '" text-anchor="middle" font-size="' + fs + '" fill="#4b4566">' + sw + ' px</text>';
-    /* Left dimension line: physical height. */
-    var lx = padL - 36;
-    s += '<line x1="' + lx + '" y1="' + padT + '" x2="' + lx + '" y2="' + (padT + sh) + '" stroke="#8a7fb8" stroke-width="2"/>';
-    s += '<line x1="' + (lx - 9) + '" y1="' + padT + '" x2="' + (lx + 9) + '" y2="' + padT + '" stroke="#8a7fb8" stroke-width="2"/>';
-    s += '<line x1="' + (lx - 9) + '" y1="' + (padT + sh) + '" x2="' + (lx + 9) + '" y2="' + (padT + sh) + '" stroke="#8a7fb8" stroke-width="2"/>';
-    s += '<text x="' + (lx - 18) + '" y="' + (padT + sh / 2) + '" text-anchor="middle" font-size="' + fs + '" fill="#4b4566" transform="rotate(-90 ' + (lx - 18) + ' ' + (padT + sh / 2) + ')">' + sh + ' px</text>';
-    /* Screen outline (physical pixels). */
-    s += '<rect x="' + padL + '" y="' + padT + '" width="' + sw + '" height="' + sh + '" fill="#ffffff" stroke="#7c3aed" stroke-width="3" stroke-dasharray="12 8"/>';
-    /* Browser window (logical pixels, scaled by DPR). */
-    s += '<rect x="' + padL + '" y="' + padT + '" width="' + winW + '" height="' + winH + '" fill="#ffffff" stroke="#c9b8f5" stroke-width="2"/>';
-    var dotY = padT + Math.max(30, Math.round(fs * 0.6));
-    for (var i = 0; i < 3; i++) {
-      s += '<circle cx="' + (padL + 30 + i * 34) + '" cy="' + dotY + '" r="8" fill="#c9b8f5"/>';
-    }
-    var labelY = dotY + Math.round(fs * 1.7);
-    s += '<text x="' + (padL + 26) + '" y="' + labelY + '" font-size="' + fs + '"><tspan fill="#7c3aed">Browser window</tspan><tspan fill="#221a3a"> ' + v.vw + ' × ' + v.vh + '</tspan></text>';
-    /* Taskbar strip (logical pixels, scaled by DPR). */
+  /* Device visual: your screen as a glowing device. The browser window and
+     taskbar inside it are sized live, to scale (physical pixels). */
+  function buildDevice(v) {
+    var frame = $('deviceFrame');
+    var stage = frame.parentElement;
+    var maxW = Math.min(400, Math.max(200, (stage.clientWidth || 800) - 8));
+    var maxH = 340;
+    var scale = Math.min(maxW / v.sw, maxH / v.sh);
+    var frameH = Math.round(v.sh * scale);
+    frame.style.width = Math.round(v.sw * scale) + 'px';
+    frame.style.height = frameH + 'px';
+    var winW = Math.min(v.sw, Math.round(v.vw * v.dpr));
+    var winH = Math.min(v.sh, Math.round(v.vh * v.dpr));
+    var win = $('deviceWindow');
+    win.style.width = (winW / v.sw * 100) + '%';
+    win.style.height = (winH / v.sh * 100) + '%';
+    var winText = 'Browser window ' + v.vw + ' × ' + v.vh;
+    $('deviceWinLabel').textContent = winText;
+    $('legendWindow').textContent = winText;
+    var taskPhys = Math.round(v.taskCss * v.dpr);
+    var taskbar = $('deviceTaskbar');
+    var legendTask = $('legendTask');
     if (taskPhys > 0) {
-      var taskY = padT + sh - taskPhys;
-      s += '<rect x="' + padL + '" y="' + taskY + '" width="' + sw + '" height="' + taskPhys + '" fill="url(#hatch)" stroke="#c9b8f5" stroke-width="2"/>';
-      s += '<line x1="' + (padL + 26) + '" y1="' + (padT + sh) + '" x2="' + (padL + 26) + '" y2="' + (padT + sh + 16) + '" stroke="#8a7fb8" stroke-width="2"/>';
-      s += '<text x="' + (padL + 40) + '" y="' + (padT + sh + 52) + '" font-size="' + fsSmall + '" fill="#4b4566">Taskbar ' + fmt(v.taskCss) + '</text>';
+      taskbar.style.display = 'block';
+      taskbar.style.height = Math.max(8, Math.round(taskPhys * scale)) + 'px';
+      legendTask.style.display = '';
+      legendTask.textContent = 'Taskbar ' + fmt(v.taskCss) + ' px';
+    } else {
+      taskbar.style.display = 'none';
+      legendTask.style.display = 'none';
     }
-    /* Caption. */
-    var capY = padT + sh + (taskPhys > 0 ? 96 : 46);
-    s += '<text x="' + (padL + sw / 2) + '" y="' + capY + '" text-anchor="middle" font-size="' + fsSmall + '" fill="#6b6390">Outline in physical pixels, taskbar and window in logical pixels</text>';
-    s += '</svg>';
-    diagram.innerHTML = s;
+    $('legendDpr').textContent = 'Pixel ratio ' + v.dpr + '×';
   }
 
   var refreshHz = null;
@@ -120,13 +104,15 @@
 
   function render() {
     var v = readValues();
-    buildDiagram(v);
+    buildDevice(v);
     $('physRes').textContent = v.sw + ' × ' + v.sh;
     $('classBadge').textContent = v.cls;
     $('aspectBadge').textContent = v.aspect;
     $('orientPill').textContent = v.orient;
     $('sTotal').textContent = fmt(v.sw * v.sh);
     $('sLogical').textContent = v.cssW + ' × ' + v.cssH;
+    $('sWindow').textContent = v.vw + ' × ' + v.vh;
+    $('sDpr').textContent = v.dpr + '×';
     $('sDepth').textContent = v.depthPerChannel + '-bit';
     $('sRefresh').textContent = refreshHz ? refreshHz + ' Hz' : '—';
     calcPpi();
