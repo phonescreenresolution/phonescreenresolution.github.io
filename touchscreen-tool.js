@@ -1,6 +1,7 @@
-/* Touchscreen Test — 14-test fullscreen flow.
+/* Touchscreen Test — 13-test fullscreen flow.
    Order (from the Screen Test Tool plugin, touch tests in ZIP order):
-   12 touch tests, then White Screen, then Solid Color.
+   12 touch tests, then Solid Color (white, black, red, green, blue, gray — white first).
+   No separate White Screen test: white is already the first colour inside Solid Color.
    One "Start Touch Test" button opens fullscreen and runs the tests
    one after another — no scrolling. Nothing is uploaded or stored. */
 (function () {
@@ -419,7 +420,7 @@
     };
   }
 
-  /* ---------- The 14 tests, in order ---------- */
+  /* ---------- The 13 tests, in order ---------- */
   var TESTS = [
     { id: 'touch-coverage', name: 'Touch Coverage Test', hint: 'Swipe across the whole grid.', run: function (s) { return runTouchGrid(s, { params: { rows: 8, cols: 11, mode: 'swipe', showReset: true } }); } },
     { id: 'touch-test', name: 'Touch Test', hint: 'Tap anywhere on the screen.', run: function (s) { return runTouchZone(s, { params: { variant: 'basic' } }); } },
@@ -433,8 +434,7 @@
     { id: 'dead-touch-zone', name: 'Dead Touch Zone Test', hint: 'A finer grid — tap every cell.', run: function (s) { return runTouchGrid(s, { params: { rows: 12, cols: 7 } }); } },
     { id: 'ghost-touch', name: 'Ghost Touch Test', hint: 'Set the device down and watch.', run: function (s) { return runTouchZone(s, { params: { variant: 'ghost' } }); } },
     { id: 'touch-latency', name: 'Touch Latency Test', hint: 'Tap the target repeatedly.', run: function (s) { return runTouchZone(s, { params: { variant: 'latency' } }); } },
-    { id: 'white-screen', name: 'White Screen Test', hint: 'Solid white, edge to edge.', run: function (s) { return runSolid(s, { params: { colors: ['#FFFFFF'] } }); } },
-    { id: 'solid-color', name: 'Solid Color Test', hint: 'Tap to cycle through the colors.', run: function (s) { return runSolid(s, { params: { colors: ['#FFFFFF', '#000000', '#FF0000', '#00FF00', '#0000FF', '#808080'] } }); } }
+    { id: 'solid-color', name: 'Solid Color Test', hint: 'Tap to cycle: white, black, red, green, blue, gray (white first).', run: function (s) { return runSolid(s, { params: { colors: ['#FFFFFF', '#000000', '#FF0000', '#00FF00', '#0000FF', '#808080'] } }); } }
   ];
 
   /* ---------- Runner state ---------- */

@@ -315,7 +315,7 @@ footer.site nav a { color: var(--muted); }
   nav.main.open a { padding: 10px 12px; }
 }
 
-/* ---------- Touchscreen 14-test fullscreen runner (scoped .tt-) ---------- */
+/* ---------- Touchscreen 13-test fullscreen runner (scoped .tt-) ---------- */
 .tt-list { columns: 2; column-gap: 28px; max-width: 720px; margin: 18px auto 6px; padding-left: 22px; color: #ede9fe; font-size: 15px; }
 .tt-list li { margin-bottom: 4px; break-inside: avoid; }
 .tt-start .tool-actions { margin-top: 20px; }
