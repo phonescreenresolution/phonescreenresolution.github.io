@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Touchscreen Test - Check Phone Touch Screen (Free)</title>
-<meta name="description" content="Test your phone touchscreen free in seconds — tap every area, check multi-touch and draw to find dead spots. No app, no download, works in your browser.">
+<meta name="description" content="Test your phone touchscreen free — 14 touch and screen tests in one flow: tap coverage, multi-touch, accuracy, edges, corners, ghost touch, latency, white screen and solid colors. No app, no download.">
 <meta name="google-site-verification" content="_-BRUVU3ety-sxMiKPLYXIAc3S__Jb0sioMftiq5Fuo" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YL931J847S"></script>
@@ -57,33 +57,60 @@
       <h2>Test Your Touchscreen</h2>
       <span class="touch-pill" id="touchPill">—</span>
     </div>
-    <p class="tool-intro">Three quick checks in one place. Tap every square, press with two or more fingers, and draw a line across the screen. Any spot that does not respond is a dead spot.</p>
-
-    <h3 class="test-title">1. Tap every square</h3>
-    <p class="test-hint">Tap or click each square. A square turns green when your screen registers the tap — a square that stays blue is not responding.</p>
-    <div class="tap-grid" id="tapGrid"></div>
-    <div class="tap-bar">
-      <b id="tapCount">0 / 20 areas tested</b>
-      <button type="button" class="btn-ghost" id="tapReset">Reset grid</button>
+    <!-- Start screen: one button starts all 14 tests -->
+    <div class="tt-start" id="ttStart">
+      <p class="tool-intro">14 tests in one flow — tap the button and your screen goes fullscreen. Each test runs one after another, no scrolling needed. Mark each test as it goes, and see your results at the end.</p>
+      <ol class="tt-list">
+        <li>Touch Coverage Test</li>
+        <li>Touch Test</li>
+        <li>Multi-Touch Test</li>
+        <li>Touch Accuracy Test</li>
+        <li>Touch Sensitivity Test</li>
+        <li>Touch Grid Test</li>
+        <li>Touch Line Test</li>
+        <li>Edge Touch Test</li>
+        <li>Corner Touch Test</li>
+        <li>Dead Touch Zone Test</li>
+        <li>Ghost Touch Test</li>
+        <li>Touch Latency Test</li>
+        <li>White Screen Test</li>
+        <li>Solid Color Test</li>
+      </ol>
+      <div class="tool-actions">
+        <button type="button" class="btn-main" id="ttStartBtn">▶ Start Touch Test</button>
+      </div>
+      <p class="touch-info" id="touchInfo">Checking your device…</p>
+      <p class="tool-note">Everything runs on your device, in your browser. Nothing is uploaded or stored.</p>
     </div>
-    <p class="tap-done" id="tapDone" hidden>All 20 areas respond — no dead spots found here ✓</p>
 
-    <h3 class="test-title">2. Multi-touch test</h3>
-    <p class="test-hint">Put two or more fingers on the pad at the same time. The counter shows how many touch points your screen sees at once. On a desktop, click and hold to test one point.</p>
-    <div class="mt-pad" id="mtPad">
-      <div class="mt-readout"><b id="mtCount">0</b><span>touch points right now</span></div>
-      <p class="mt-coords" id="mtCoords">Touch the pad to see coordinates</p>
+    <!-- Fullscreen runner -->
+    <div class="tt-runner" id="ttRunner" hidden>
+      <div class="tt-topbar">
+        <span class="tt-progress" id="ttProgress">Test 1 of 14</span>
+        <span class="tt-name" id="ttName"></span>
+        <button type="button" class="tt-exit" id="ttExit" aria-label="Exit test">✕</button>
+      </div>
+      <div class="tt-stage" id="ttStage"></div>
+      <div class="tt-bottombar">
+        <button type="button" class="tt-btn" id="ttPrev">← Previous</button>
+        <button type="button" class="tt-btn tt-bad" id="ttProblem">⚠ Problem found</button>
+        <button type="button" class="tt-btn tt-good" id="ttGood">✓ Looks good</button>
+        <button type="button" class="tt-btn" id="ttSkip">Skip</button>
+        <button type="button" class="tt-btn" id="ttNext">Next →</button>
+      </div>
     </div>
 
-    <h3 class="test-title">3. Draw across the screen</h3>
-    <p class="test-hint">Drag your finger (or mouse) to draw a line. A gap in the line can mean a dead spot — try drawing over the same place from different directions.</p>
-    <div class="draw-wrap"><canvas id="drawCanvas"></canvas></div>
-    <div class="draw-bar">
-      <button type="button" class="btn-ghost" id="drawClear">Clear drawing</button>
+    <!-- Results screen -->
+    <div class="tt-results" id="ttResults" hidden>
+      <h3>Your results</h3>
+      <p class="tt-summary" id="ttSummary"></p>
+      <ol class="tt-result-list" id="ttResultList"></ol>
+      <div class="tool-actions">
+        <button type="button" class="btn-main" id="ttAgain">Test again</button>
+        <button type="button" class="btn-ghost" id="ttFailed">Run failed tests</button>
+        <button type="button" class="btn-ghost" id="ttClose">Close</button>
+      </div>
     </div>
-
-    <p class="touch-info" id="touchInfo">Checking your device…</p>
-    <p class="tool-note">Everything runs on your device, in your browser. Nothing is uploaded or stored.</p>
   </div>
 
   <section class="block">
@@ -113,9 +140,9 @@
     <h2>How to test your touchscreen in 4 steps</h2>
     <ol class="steps">
       <li><h3>Open this page on your phone</h3><p>The tool works best on the device you want to test. Open it in your phone's browser — no app and no settings menu to dig through.</p></li>
-      <li><h3>Tap every square</h3><p>Work through the grid row by row. Every square you tap should turn green. Note any square that stays blue even after several taps.</p></li>
-      <li><h3>Try two fingers and draw</h3><p>Put two or three fingers on the multi-touch pad and check the counter, then drag a line across the whole draw area in different directions.</p></li>
-      <li><h3>Read the result</h3><p>If all 20 squares turn green and your lines are smooth, your screen is healthy. If the same spot fails every time, it is most likely a hardware problem.</p></li>
+      <li><h3>Tap "Start Touch Test"</h3><p>One tap opens the screen in fullscreen and starts the flow. All 14 tests run one after another — you never need to scroll.</p></li>
+      <li><h3>Follow each test and mark it</h3><p>Do what each test asks — swipe the grid, tap the targets, draw a line, put the phone down for the ghost touch test. After each test, tap "Looks good", "Problem found" or "Skip" to move on.</p></li>
+      <li><h3>Read your results</h3><p>At the end you get a list of all 14 tests with your verdict on each. If something failed, tap "Run failed tests" to check just those again.</p></li>
     </ol>
   </section>
 
@@ -135,7 +162,7 @@
   <section class="block faq">
     <h2>Frequently asked questions</h2>
     <details><summary>How do I test my phone touchscreen?</summary>
-    <p>Open this page on your phone and tap every square in the grid. Then test two fingers on the multi-touch pad and draw a line across the draw area. The whole check takes less than a minute and needs no app.</p></details>
+    <p>Open this page on your phone and tap "Start Touch Test". The screen goes fullscreen and 14 tests run one after another — swipe grids, tap targets, multi-touch, edges, corners, ghost touch, latency, then a white screen and solid colors. Mark each test as you go and read your results at the end. The whole check takes a few minutes and needs no app.</p></details>
     <details><summary>What is a dead spot on a touchscreen?</summary>
     <p>A dead spot is a small area of the screen that does not respond to touch at all. It is usually caused by damage to the digitizer — the layer under the glass that senses your finger. In the tap grid above, a dead spot shows up as a square that never turns green.</p></details>
     <details><summary>How many fingers can my phone track at once?</summary>
@@ -151,7 +178,7 @@
     <details><summary>Does this test work on a laptop or desktop?</summary>
     <p>Yes. Every test works with a mouse: click the squares, click and hold on the multi-touch pad, and drag to draw. The multi-touch counter will show one point for a mouse — that is normal, since a mouse is a single pointer.</p></details>
     <details><summary>Is this touchscreen test free?</summary>
-    <p>Yes, completely free. All three tests — tap grid, multi-touch and draw — are free, with no limits, no account and no download.</p></details>
+    <p>Yes, completely free. All 14 tests — tap coverage, multi-touch, accuracy, edges, corners, ghost touch, latency, white screen and solid colors — are free, with no limits, no account and no download.</p></details>
     <details><summary>Do I need to install an app?</summary>
     <p>No. This is a web tool — everything runs in your browser on any phone, tablet or computer. Nothing is installed, uploaded or stored.</p></details>
   </section>
@@ -170,7 +197,7 @@
 
   <div class="cta">
     <h2>Is your screen healthy?</h2>
-    <p>Tap grid, multi-touch and draw test — free, right here.</p>
+    <p>14 tests in one flow — touch, white screen and solid colors, free, right here.</p>
     <a class="btn" href="#tool">Test My Touchscreen</a>
   </div>
 </main>
