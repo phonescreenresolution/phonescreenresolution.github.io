@@ -59,7 +59,9 @@
     </div>
     <!-- Start screen: one button starts all 13 tests -->
     <div class="tt-start" id="ttStart">
-      <p class="tool-intro">13 tests in one flow — tap the button and your screen goes fullscreen. Each test runs one after another, no scrolling needed. Mark each test as it goes, and see your results at the end.</p>
+      <div class="tool-actions">
+        <button type="button" class="btn-main" id="ttStartBtn">▶ Start Touch Test</button>
+      </div>
       <ol class="tt-list">
         <li>Touch Coverage Test</li>
         <li>Touch Test</li>
@@ -73,11 +75,9 @@
         <li>Dead Touch Zone Test</li>
         <li>Ghost Touch Test</li>
         <li>Touch Latency Test</li>
-        <li>Solid Color Test — white, black, red, green, blue, gray (white is the first colour, not a separate test)</li>
+        <li>Solid Color Test — white, black, red, green, blue, gray</li>
       </ol>
-      <div class="tool-actions">
-        <button type="button" class="btn-main" id="ttStartBtn">▶ Start Touch Test</button>
-      </div>
+      <p class="tool-intro">13 tests in one flow — tap the button and your screen goes fullscreen. Each test runs one after another, no scrolling needed. Mark each test as it goes, and see your results at the end.</p>
       <p class="touch-info" id="touchInfo">Checking your device…</p>
       <p class="tool-note">Everything runs on your device, in your browser. Nothing is uploaded or stored.</p>
     </div>
